@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine','ejs');
 
 var campgrounds = [
-		{name:"Salmon Creek",image:"https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&h=350"},
+		{name:"Salmon Creek",image:"https://images.pexels.com/photos/2422265/pexels-photo-2422265.jpeg?auto=compress&cs=tinysrgb&h=350"},
 		{name:"Granite Hill",image:"https://images.pexels.com/photos/1840421/pexels-photo-1840421.jpeg?auto=compress&cs=tinysrgb&h=350"},
 		{name:"Mountain Goat's Rest",image:"https://images.pexels.com/photos/2108709/pexels-photo-2108709.jpeg?auto=compress&cs=tinysrgb&h=350"}
 	]
