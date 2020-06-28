@@ -1,7 +1,8 @@
 const express = require('express'),
 	app = express(),
 	bodyParser = require('body-parser'),
-	mongoose = require("mongoose")
+	mongoose = require("mongoose"),
+	PORT = 1000
 
 mongoose.connect("mongodb://localhost/yelp_camp", {useUnifiedTopology:true, useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,7 +14,7 @@ const campgroundSchema = new mongoose.Schema({
 	image: String
 });
 
-const Campground = mongoose.model("Campground", campgroundSchema)
+var Campground = mongoose.model("Campground", campgroundSchema)
 
 // Campground.create(
 // 		{
@@ -35,35 +36,35 @@ app.get('/',(req, res)=>{
 
 app.get('/campgrounds', (req, res)=>{
 	// Get all campgrounds from db
-	Campground.find({}, (err, allcampgrounds)=>{
+	Campground.find({}, (err, allCampgrounds)=>{
 		if(err){
-			console.log(err)
+			console.log(err);
 		} else{
-			res.render("campgrounds",{campgrounds:allcampgrounds});
+			res.render("campgrounds",{campgrounds:allCampgrounds});
 		}
 	})
 });
 
 app.post('/campgrounds',(req, res)=>{
 	// get data from and add to campgrounds array
-	var name = req.body.name
-	var image = req.body.image
+	var name = req.body.name;
+	var image = req.body.image;
 	var newCampground = {name:name, image:image};
 	// Create a new campground and save to DB
 	Campground.create(newCampground,(err, newlyCreated)=>{
 		if(err){
 			console.log(err);
 		} else{
+			console.log("Newly created campground")
 			res.redirect('/campgrounds');		
-		}
-	})
-	
+		  }
+	})	
 });
 
 app.get('/campgrounds/new',(req, res)=>{
 	res.render('new');
 });
 
-app.listen(6969, function(){
+app.listen(PORT, function(){
 	console.log("The YelpCamp Server Has Started!!")
 })
