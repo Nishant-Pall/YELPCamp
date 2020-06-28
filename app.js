@@ -4,7 +4,7 @@ const express = require('express'),
 	mongoose = require("mongoose"),
 	PORT = 1000
 
-mongoose.connect("mongodb://localhost/yelp_camp", {useUnifiedTopology:true, useNewUrlParser:true});
+mongoose.connect("mongodb://localhost:27017/yelp_camp", {useUnifiedTopology:true, useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine','ejs');
 
@@ -55,7 +55,6 @@ app.post('/campgrounds',(req, res)=>{
 		if(err){
 			console.log(err);
 		} else{
-			console.log("Newly created campground")
 			res.redirect('/campgrounds');		
 		  }
 	})	
