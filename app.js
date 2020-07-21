@@ -3,8 +3,10 @@ const express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require("mongoose"),
 	PORT = 1000,
-	Campground = require("./models/campgrounds")
+	Campground = require("./models/campgrounds"),
+	seedDB = require("./seeds")
 
+seedDB()
 mongoose.connect("mongodb://localhost/yelp_camp", { useUnifiedTopology: true, useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
